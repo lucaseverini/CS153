@@ -1,0 +1,20 @@
+# OS specific #
+.DS_Store
+
+# NetBeans specific #
+build-impl.xml
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Project specific #
+BuildTimeStrings.properties
+
+# Class Files #
+*.class
+/HW2-Final/nbproject/private/
+/HW3/nbproject/private/

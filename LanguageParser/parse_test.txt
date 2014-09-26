@@ -1,0 +1,40 @@
+
+int aa_aa=10000;
+short s = 1;
+long l1=0;
+float f1=1.0;
+double d1=10.5;
+char c1='A';
+boolean b1=true;
+String str="aaaa";
+
+if(c1=='B')
+{
+	int answer = 1;	
+}
+else
+{
+	int answer = 0;	
+}
+
+while
+
+var_name
+
+== = + - / * ++ -- += -= /= *= ( ) [ ] { } . : ; ? ! & || && < > <= =< >= => << >>
+
+'c'
+
+// line comment
+/* block comment */
+/* 
+	Multi-line block comment 
+	------------------------
+*/
+
+"Hello, world."
+"Hello_world."
+"Hello,\tworld!"
+"Hello,\n\"world!\""
+"It's Friday!"
+
