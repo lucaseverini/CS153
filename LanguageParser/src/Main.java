@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 
 import wci.frontend.*;
 import wci.intermediate.*;
@@ -29,7 +30,15 @@ public class Main
      */
     public static void main(String args[])
     {
-        try {
+        try {			
+			if(args.length < 3)
+			{
+				System.out.print("Compiler command: ");
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));	
+				String command = reader.readLine();
+				args = command.split(" ");
+			}
+			
 			String language = args[0];
             String operation = args[1];
 
@@ -43,7 +52,8 @@ public class Main
             String flags = "";
 
             // Flags.
-            while ((++i < args.length) && (args[i].charAt(0) == '-')) {
+            while ((++i < args.length) && (args[i].charAt(0) == '-')) 
+			{
                 flags += args[i].substring(1);
             }
 
@@ -70,7 +80,8 @@ public class Main
                 throw new Exception();
             }
         }
-        catch (Exception ex) {
+        catch (Exception ex) 
+		{
             System.out.println(USAGE);
         }
     }

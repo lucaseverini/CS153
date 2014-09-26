@@ -89,19 +89,12 @@ public class JavaStringToken extends JavaToken
 			}
 			else
 			{
-				if (currentChar != EOF)
+				if (currentChar != EOF && currentChar != '\"')
 				{
 					textBuffer.append(currentChar);
 					valueBuffer.append(currentChar);
 					
 					currentChar = nextChar();  // consume character
-				}
-				else
-				{
-					type = ERROR;
-					value = INVALID_CHARACTER;
-					text = textBuffer.toString();
-					return;
 				}
 			}
         } 

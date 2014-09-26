@@ -48,7 +48,6 @@ public class JavaCommentToken extends JavaToken
 		}
 
         type = COMMENT;
-        value = valueBuffer.toString();  
         text = textBuffer.toString();
     }
 }

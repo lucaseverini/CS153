@@ -105,6 +105,16 @@ public class JavaSpecialSymbolToken extends JavaToken
 				type = SPECIAL_SYMBOLS.get(text);
 				break;
 
+			case '%':
+				currentChar = nextChar();
+				if(currentChar == '=')
+				{
+					text += currentChar;					
+					currentChar = nextChar();
+				}
+				type = SPECIAL_SYMBOLS.get(text);
+				break;
+
 			case '<':
 				currentChar = nextChar();
 				if(currentChar == '<' || currentChar == '=')
@@ -121,13 +131,25 @@ public class JavaSpecialSymbolToken extends JavaToken
 				{
 					text += currentChar;					
 					currentChar = nextChar();
+					
+					if(currentChar == '>')
+					{
+						text += currentChar;					
+						currentChar = nextChar();
+						
+						if(currentChar == '=')
+						{
+							text += currentChar;					
+							currentChar = nextChar();
+						}
+					}
 				}
 				type = SPECIAL_SYMBOLS.get(text);
 				break;
 				
 			case '|':
 				currentChar = nextChar();
-				if(currentChar == '|')
+				if(currentChar == '|' || currentChar == '=')
 				{
 					text += currentChar;					
 					currentChar = nextChar();
@@ -137,7 +159,7 @@ public class JavaSpecialSymbolToken extends JavaToken
 
 			case '&':
 				currentChar = nextChar();
-				if(currentChar == '&')
+				if(currentChar == '&' || currentChar == '=')
 				{
 					text += currentChar;					
 					currentChar = nextChar();
@@ -145,6 +167,17 @@ public class JavaSpecialSymbolToken extends JavaToken
 				type = SPECIAL_SYMBOLS.get(text);
 				break;
 
+			case '^':
+				currentChar = nextChar();
+				if(currentChar == '=')
+				{
+					text += currentChar;					
+					currentChar = nextChar();
+				}
+				type = SPECIAL_SYMBOLS.get(text);
+				break;
+
+			case ',':
 			case '.':
 			case ':':
 			case ';':
@@ -155,6 +188,7 @@ public class JavaSpecialSymbolToken extends JavaToken
 			case ']':
 			case '{':
 			case '}':
+			case '@':
 				currentChar = nextChar();
 				type = SPECIAL_SYMBOLS.get(text);
 				break;

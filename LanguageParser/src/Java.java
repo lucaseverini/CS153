@@ -1,22 +1,20 @@
+/*
+	Java.java
+
+	By Luca Severini
+
+	September-25-2014
+*/
+
 import java.io.BufferedReader;
 import java.io.FileReader;
-
 import wci.frontend.*;
 import wci.intermediate.*;
 import wci.backend.*;
 import wci.message.*;
-
-import static wci.frontend.pascal.PascalTokenType.STRING;
+import static wci.frontend.java.JavaTokenType.STRING_CONST;
 import static wci.message.MessageType.*;
 
-/**
- * <h1>Pascal</h1>
- *
- * <p>Compile or interpret a Pascal source program.</p>
- *
- * <p>Copyright (c) 2009 by Ronald Mak</p>
- * <p>For instructional purposes only.  No warranties.</p>
- */
 public class Java
 {
     private Parser parser;    // language-independent parser
@@ -27,16 +25,13 @@ public class Java
 
 	/**
      * Just parse a java source program.
-     * @param operation either "compile" or "execute".
+     * @param operation only "parse" for now.
      * @param filePath the source file path.
-     * @param flags the command line flags.
+     * @param flags unused for now.
      */
     public Java(String operation, String filePath, String flags)
     {
         try {
-            boolean intermediate = flags.indexOf('i') > -1;
-            boolean xref         = flags.indexOf('x') > -1;
-
             source = new Source(new BufferedReader(new FileReader(filePath)));
             source.addMessageListener(new SourceMessageListener());
 
@@ -61,7 +56,8 @@ public class Java
 				backend.process(iCode, symTab);
 			}
         }
-        catch (Exception ex) {
+        catch (Exception ex) 
+		{
             System.out.println("***** Internal translator error. *****");
             ex.printStackTrace();
         }
@@ -83,9 +79,10 @@ public class Java
             MessageType type = message.getType();
             Object body[] = (Object []) message.getBody();
 
-            switch (type) {
-
-                case SOURCE_LINE: {
+            switch (type) 
+			{
+                case SOURCE_LINE:
+				{
                     int lineNumber = (Integer) body[0];
                     String lineText = (String) body[1];
 
@@ -118,13 +115,15 @@ public class Java
          * Called by the parser whenever it produces a message.
          * @param message the message.
          */
+		@Override
         public void messageReceived(Message message)
         {
             MessageType type = message.getType();
 
-            switch (type) {
-
-                case TOKEN: {
+            switch (type) 
+			{
+                case TOKEN: 
+				{
                     Object body[] = (Object []) message.getBody();
                     int line = (Integer) body[0];
                     int position = (Integer) body[1];
@@ -139,7 +138,7 @@ public class Java
                                                      tokenText));
                     if (tokenValue != null) 
 					{
-                        if (tokenType == STRING)
+                        if (tokenType == STRING_CONST)
 						{
                             tokenValue = "\"" + tokenValue + "\"";
                         }
@@ -179,7 +178,8 @@ public class Java
                     break;
                 }
 
-                case PARSER_SUMMARY: {
+                case PARSER_SUMMARY: 
+				{
                     Number body[] = (Number[]) message.getBody();
                     int statementCount = (Integer) body[0];
                     int syntaxErrors = (Integer) body[1];
@@ -212,13 +212,15 @@ public class Java
          * Called by the back end whenever it produces a message.
          * @param message the message.
          */
+		@Override
         public void messageReceived(Message message)
         {
             MessageType type = message.getType();
 
             switch (type) {
 
-                case INTERPRETER_SUMMARY: {
+                case INTERPRETER_SUMMARY: 
+				{
                     Number body[] = (Number[]) message.getBody();
                     int executionCount = (Integer) body[0];
                     int runtimeErrors = (Integer) body[1];
@@ -230,7 +232,8 @@ public class Java
                     break;
                 }
 
-                case COMPILER_SUMMARY: {
+                case COMPILER_SUMMARY: 
+				{
                     Number body[] = (Number[]) message.getBody();
                     int instructionCount = (Integer) body[0];
                     float elapsedTime = (Float) body[1];

@@ -24,6 +24,11 @@ public enum JavaTokenType implements TokenType
 	ENUM("enum"), INSTANCEOF("instanceof"), RETURN("return"), TRANSIENT("transient"), TRY("try"), CATCH("catch"),
 	FINAL("final"), INTERFACE("interface"), FINALLY("finally"), VOLATILE("volatile"), SUPER("super"), NATIVE("native"), 
 	SHORT("short"), STRICT("strictfp"),
+	
+	// Annotations
+	ANNOT_OVERRIDE("@Override"), ANNOT_DEPRECATED("@Deprecated"), ANNOT_SUPPRESSWARNINGS("@SuppressWarnings"),
+	ANNOT_SAFEVARARGS("@SafeVarargs"), ANNOT_FUNCTIONALINTERFACE("@FunctionalInterface"), ANNOT_RETENTION("@Retention"), 
+	ANNOT_DOCUMENTED("@Documented"), ANNOT_TARGET("@Target"), ANNOT_INHERITED("@Inherited"), ANNOT_REPEATABLE("@Repeatable"),
 
     // Special symbols
     INCREMENT("++"), PLUS("+"), MINUS("-"), DECREMENT("--"), MULTIPLY("*"), ASSIGN("="),
@@ -33,8 +38,8 @@ public enum JavaTokenType implements TokenType
 	SHIFT_RIGHT(">>"), SHIFT_LEFT("<<"),
 	MINUS_ASSIGN("-="), PLUS_ASSIGN("+="), MULTIPLY_ASSIGN("*="), DIVIDE_ASSIGN("/="),
     LEFT_BRACKET("["), RIGHT_BRACKET("]"), LEFT_BRACE("{"), RIGHT_BRACE("}"), QUESTION("?"), EOR("^"), COMPLEMENT("~"),
-	MOD_ASSIGN("%="),  AND_ASSIGN("&="), EOR_ASSIGN("^="), OR_ASSIGN("|="), SHIFT_LEFT_ASSIGN("<<="), SHIFT_RIGHT_ASSIGN(">>="),
-	UNSIGN_SHIFT_RIGHT(">>>"), UNSIGN_SHIFT_RIGHT_ASSIGN(">>>="),
+	MOD_ASSIGN("%="), AND_ASSIGN("&="), EOR_ASSIGN("^="), OR_ASSIGN("|="), SHIFT_LEFT_ASSIGN("<<="), SHIFT_RIGHT_ASSIGN(">>="),
+	UNSIGN_SHIFT_RIGHT(">>>"), UNSIGN_SHIFT_RIGHT_ASSIGN(">>>="), ANNOT("@"),
 
     IDENTIFIER, BOOLEAN_CONST, CHARACTER_CONST, INTEGER_CONST, LONGINTEGER_CONST, SHORT_CONST, 
 	STRING_CONST, REAL_CONST, COMMENT, ERROR, END_OF_FILE;
@@ -43,7 +48,7 @@ public enum JavaTokenType implements TokenType
     private static final int LAST_RESERVED_INDEX  = STRICT.ordinal();
 
     private static final int FIRST_SPECIAL_INDEX = INCREMENT.ordinal();
-    private static final int LAST_SPECIAL_INDEX  = UNSIGN_SHIFT_RIGHT_ASSIGN.ordinal();
+    private static final int LAST_SPECIAL_INDEX  = ANNOT.ordinal();
 
     private final String text;  // token text
 

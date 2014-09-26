@@ -44,7 +44,7 @@ public class JavaCommentBlockToken extends JavaToken
         // Get all comment
 		char currentChar = nextChar();
 				
-        while(currentChar != '*' && peekChar() != '/')
+        while(currentChar != '*' || peekChar() != '/')
 		{
 			if(currentChar == EOF)
 			{
@@ -64,7 +64,6 @@ public class JavaCommentBlockToken extends JavaToken
 		nextChar();
 
         type = COMMENT;
-        value = valueBuffer.toString();  
         text = textBuffer.toString();
     }
 }
